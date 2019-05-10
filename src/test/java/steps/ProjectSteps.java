@@ -1,38 +1,40 @@
 package steps;
 
 import cucumber.api.java.en.And;
-
+import cucumber.api.java.en.When;
 import org.testng.SkipException;
-import org.testng.internal.TestResult;
 import pivotal.api.ProjectAPI;
 import pivotal.api.exceptions.NoCreatedRequierementException;
+import pivotal.entities.Project;
 import pivotal.ui.dashboard.DashboardPage;
 
 public class ProjectSteps {
 
+    Project project;
     private DashboardPage dashboardPage;
-    private ProjectAPI project;
+    private ProjectAPI projectAPI;
 
     @And("^I navigate to \"([^\"]*)\" project$")
-        public void navigateToProject(String projectName) {
-            dashboardPage = new DashboardPage();
-            dashboardPage.naviagteToProject(projectName);
-            /*WebDriver driver = WebDriverManager.getInstance().getWebDriver();
-
-            String locator = "//a[@data-aid='project-name' and contains(text(),'%s')]";
-            String a = String.format(locator, projectName);
-            WebElement name = driver.findElement(By.xpath(String.format(locator, projectName)));
-            name.click();*/
-            String ba = "";
-        }
+    public void navigateToProject(String projectName) {
+        dashboardPage = new DashboardPage();
+        dashboardPage.naviagteToProject(projectName);
+    }
 
     @And("^I have a Project with name \"([^\"]*)\"$")
-    public void haveProjectWithName(String projectName){
-        project = new ProjectAPI();
+    public void haveProjectWithName(String projectName) {
+        projectAPI = new ProjectAPI();
         try {
-            project.createProject(projectName);
+            projectAPI.createProject(projectName);
         } catch (NoCreatedRequierementException ncre) {
             throw new SkipException(ncre.getMessage());
         }
+        project = new Project(projectName);
+    }
+
+    @When("^I open the Project from Project Dashboard page$")
+    public void openTheProjectFromProjectDashboardPage() {
+        dashboardPage = new DashboardPage();
+        dashboardPage.refresh();
+        dashboardPage.naviagteToProject(project.getNameProject());
     }
 }

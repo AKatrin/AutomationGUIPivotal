@@ -1,7 +1,6 @@
 package steps;
 
-import cucumber.api.PendingException;
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.And;
 import pivotal.ui.EpicsPanel;
 import pivotal.ui.MenuLeft;
 
@@ -10,15 +9,10 @@ public class EpicSteps {
     private MenuLeft menuLeft;
 
     private EpicsPanel epicsPanel;
-    @When("^I click on the Add Epic button$")
-    public void clickOtheAddEpicButton(){
-            epicsPanel = new EpicsPanel();
-            epicsPanel.clickOnButonAddEpic();
-    }
-    @When("^I click on Epics$")
-    public void clickOnEpics(){
+
+    @And("^I open Epics section in Project page$")
+    public void openEpicsSectionInProjectPage() {
         menuLeft = new MenuLeft();
         menuLeft.clickInEpicsOption();
     }
-
 }
