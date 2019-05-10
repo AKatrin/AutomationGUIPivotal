@@ -2,7 +2,6 @@ package pivotal.api;
 
 
 import io.restassured.response.Response;
-import net.bytebuddy.implementation.bytecode.Throw;
 import pivotal.api.exceptions.NoCreatedRequierementException;
 
 import java.util.HashMap;
@@ -11,6 +10,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 
 public class ProjectAPI {
+
     public void createProject(String projectName) throws NoCreatedRequierementException {
         String restAPIUrl = "https://www.pivotaltracker.com/services/v5/projects";
         Map<String,String> newProject = new HashMap<>();
