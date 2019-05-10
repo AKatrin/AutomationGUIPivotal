@@ -10,7 +10,7 @@ import java.util.Properties;
 public class LoaderPropertiesFile {
 
 
-    private  static final String URL_DRIVER_PROPERTIES = "C:/Users/Admin/IdeaProjects/pivotal/driver.properties";
+    private  static final String URL_DRIVER_PROPERTIES = "driver.properties";
     private Map<String,String> properties = new HashMap<>();
 
     protected LoaderPropertiesFile() {
@@ -30,7 +30,7 @@ public class LoaderPropertiesFile {
     }
 
     public void addPropertiesGradle() {
-        Properties propertiesGradle = loadFile("C:/Users/Admin/IdeaProjects/pivotal/gradle.properties");
+        Properties propertiesGradle = loadFile("gradle.properties");
         propertiesGradle.forEach((key, value) -> properties.put( key.toString() , value.toString()));
     }
 
