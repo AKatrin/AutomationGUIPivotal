@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.Properties;
-
 public class LoginPage extends BasePage{
 
     @FindBy(id="login_type_check_form")
@@ -26,12 +24,11 @@ public class LoginPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(loginForm));
     }
 
-    public DashboardProject login(String userName, String password) {
+    public void login(String userName, String password) {
         setUserName(LoaderPropertiesFile.getInstance().getProperties().get(userName));
         clickNextSignInBtn();
         setPassword(LoaderPropertiesFile.getInstance().getProperties().get(password));
         clickNextSignInBtn();
-        return new DashboardProject();
     }
 
     private void setPassword(String password) {
@@ -45,6 +42,4 @@ public class LoginPage extends BasePage{
     public void setUserName(String userName) {
         userNameTextBox.sendKeys(userName);
     }
-
-
 }

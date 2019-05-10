@@ -2,18 +2,23 @@ package pivotal.ui;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class MenuLeft extends BasePage{
-    @FindBy(xpath = "//*[@id=\"sidebar_area\"]/aside/div/section/section/div/ul/li[6]/button/span")
+public class MenuLeft extends BasePage {
+    @FindBy(xpath = "//button[@class='panel_toggle']//span[contains(text(),'epics')]")
     private WebElement epicsOptions;
+
+    @FindBy(xpath = "//li[@title='Epics']//button")
+    private WebElement epicsBtn;
+
     @Override
     protected void waitUntilPageObjectIsLoaded() {
-        wait.until(ExpectedConditions.visibilityOf(epicsOptions));
     }
 
-
     public void clickInEpicsOption() {
-        epicsOptions.click();
+        String valueOfEpicButton = epicsBtn.getAttribute("data-panel-visible");
+        System.out.println(valueOfEpicButton);
+        if (valueOfEpicButton.equals("false")) {
+            epicsBtn.click();
+        }
     }
 }
