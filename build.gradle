@@ -28,8 +28,8 @@ dependencies {
     testCompile 'io.cucumber:cucumber-junit:2.4.0'
     compile 'io.rest-assured:rest-assured:3.3.0'
     compile 'org.hamcrest:hamcrest:2.1'
-
-
+    compile group: 'com.vimalselvam', name: 'cucumber-extentsreport', version: '3.1.1'
+    compile group: 'com.aventstack', name: 'extentreports', version: '4.0.9'
 }
 
 
