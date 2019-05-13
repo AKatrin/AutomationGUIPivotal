@@ -40,7 +40,6 @@ public class WebDriverManager {
      * Initializes the settings for the driver.
      */
     private void initialize() {
-
         String browserName = BrowserConfig.getInstance().getBrowserName().toUpperCase();
         this.webDriver = WebDriverFactory.getManager(BrowserType.valueOf(browserName));
         this.webDriver.manage().window().maximize();

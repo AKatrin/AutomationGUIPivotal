@@ -5,9 +5,7 @@ public class Project {
     private String nameProject;
     private int id;
 
-    public Project(String nameProject) {
-        this.nameProject = nameProject;
-    }
+    public Project() {}
 
     public String getNameProject() {
         return nameProject;
