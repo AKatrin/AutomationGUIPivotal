@@ -1,6 +1,7 @@
 package steps;
 
-import cucumber.api.java.en.And;
+import cucumber.Context;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import org.testng.SkipException;
 import pivotal.api.ProjectAPI;
@@ -9,32 +10,27 @@ import pivotal.entities.Project;
 import pivotal.ui.dashboard.DashboardPage;
 
 public class ProjectSteps {
-
-    Project project;
+    Context context;
+    Project project = new Project();
     private DashboardPage dashboardPage;
     private ProjectAPI projectAPI;
 
-    @And("^I navigate to \"([^\"]*)\" project$")
-    public void navigateToProject(String projectName) {
-        dashboardPage = new DashboardPage();
-        dashboardPage.naviagteToProject(projectName);
-    }
-
-    @And("^I have a Project with name \"([^\"]*)\"$")
-    public void haveProjectWithName(String projectName) {
+    @Given("^I have a Project with name \"([^\"]*)\"$")
+    public void haveProjectWithName(final String projectName) {
         projectAPI = new ProjectAPI();
         try {
             projectAPI.createProject(projectName);
         } catch (NoCreatedRequierementException ncre) {
             throw new SkipException(ncre.getMessage());
         }
-        project = new Project(projectName);
+        project.setNameProject(projectName);
+        //context.getProject().setNameProject(projectName);
     }
 
     @When("^I open the Project from Project Dashboard page$")
     public void openTheProjectFromProjectDashboardPage() {
         dashboardPage = new DashboardPage();
         dashboardPage.refresh();
-        dashboardPage.naviagteToProject(project.getNameProject());
+        dashboardPage.naviagteToProject(context.getProject().getNameProject());
     }
 }
