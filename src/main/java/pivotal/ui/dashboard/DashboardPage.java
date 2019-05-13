@@ -3,7 +3,7 @@ package pivotal.ui.dashboard;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pivotal.ui.BasePage;
-import pivotal.ui.MenuLeft;
+import pivotal.ui.project.MenuLeft;
 
 import java.util.List;
 

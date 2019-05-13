@@ -1,5 +1,6 @@
 package pivotal.ui;
 
+import core.selenium.utils.LoaderPropertiesFile;
 import core.selenium.webdrivers.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 
@@ -9,15 +10,15 @@ import java.net.URL;
 
 public class PageTransporter {
 
+    private static PageTransporter instance;
     WebDriver webDriver;
     String baseURL = "https://www.pivotaltracker.com/";
-    private static PageTransporter instance;
 
     protected PageTransporter() {
         initialize();
     }
 
-    public static PageTransporter getInstance(){
+    public static PageTransporter getInstance() {
         if (instance == null) {
             instance = new PageTransporter();
         }
@@ -28,7 +29,7 @@ public class PageTransporter {
         webDriver = WebDriverManager.getInstance().getWebDriver();
     }
 
-    private void goToURL(final String url){
+    private void goToURL(final String url) {
         try {
             webDriver.navigate().to(new URL(url));
         } catch (MalformedURLException e) {
