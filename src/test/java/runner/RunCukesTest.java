@@ -7,7 +7,7 @@ import org.testng.annotations.AfterTest;
 
 @CucumberOptions(
         plugin = {"pretty", "html:target/cucumber", "json:target/cucumber.json"},
-        glue={"steps"},
+        glue = {"steps", "hooks"},
         features = {"src/test/resources/features/epic.feature"},
         monochrome = true)
 
