@@ -8,7 +8,6 @@ public class LoginSteps {
 
     PageTransporter pageTransporter = PageTransporter.getInstance();
 
-    // Pages
     private LoginPage loginPage;
 
     @And("^I am logged in pivotal tracker site with (username) and (password) valid$")
@@ -16,5 +15,4 @@ public class LoginSteps {
         loginPage = pageTransporter.navigateToLoginPage();
         loginPage.login(userName, password);
     }
-
 }

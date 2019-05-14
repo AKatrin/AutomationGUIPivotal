@@ -1,6 +1,7 @@
 package pivotal.api;
 
 import core.selenium.utils.LoaderPropertiesFile;
+import core.selenium.webdrivers.WebDriverManager;
 import io.restassured.response.Response;
 import pivotal.api.exceptions.NoCreatedRequierementException;
 import pivotal.entities.Project;
@@ -11,6 +12,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 
 public class ProjectAPI {
+
 
     private static final String ENDPOINT_PROJECTS = "/projects";
 
@@ -49,8 +51,8 @@ public class ProjectAPI {
         Map<String, String> newProject = new HashMap<>();
         newProject.put("name", project.getNameProject());
         Response response = given()
-                .headers("X-TrackerToken", "e792c5ed8debd0705270e37d8db106e8",
-                        "Content-Type", "application/json")
+                .headers(X_TRACKER_TOKEN, TRACKER_TOKEN_VALUE,
+                        CONTENT_TYPE, CONTENT_TYPE_VALUE)
                 .body(newProject)
                 .when().post(baseUrl);
 
@@ -69,8 +71,12 @@ public class ProjectAPI {
         String idProjectAsString = String.valueOf(idProject);
         String baseUrl = apiBaseURL.concat(ENDPOINT_PROJECTS).concat("/" + idProjectAsString);
         Response response = given()
-                .headers("X-TrackerToken", "e792c5ed8debd0705270e37d8db106e8",
-                        "Content-Type", "application/json")
+                .headers(X_TRACKER_TOKEN, TRACKER_TOKEN_VALUE,
+                        CONTENT_TYPE, CONTENT_TYPE_VALUE)
                 .when().delete(baseUrl);
+    }
+
+    public static ProjectAPI getInstance() {
+        return new ProjectAPI();
     }
 }

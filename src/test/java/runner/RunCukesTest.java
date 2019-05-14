@@ -37,6 +37,6 @@ public class RunCukesTest extends AbstractTestNGCucumberTests {
         Reportable result = reportBuilder.generateReports();
 
         //Close webdriver.
-        WebDriverManager.getInstance().getWebDriver().close();
+        //WebDriverManager.getInstance().getWebDriver().close();
     }
 }

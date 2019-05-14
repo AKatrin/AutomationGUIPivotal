@@ -1,7 +1,4 @@
-# new feature
-# Tags: optional
-#
-Feature: A description
+Feature: Create  and delete an epic
 
 @deleteProject
 Scenario: Create a new project when user has at least 1 project
@@ -12,3 +9,5 @@ Scenario: Create a new project when user has at least 1 project
     And I add an Epic from epics section in project page with following values
         | name | epic|
     Then I should see the epic in epics section in project page
+
+
