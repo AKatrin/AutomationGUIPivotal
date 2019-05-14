@@ -3,6 +3,7 @@
 #
 Feature: A description
 
+@deleteProject
 Scenario: Create a new project when user has at least 1 project
     Given I have a Project with name "testProject10"
     And I am logged in pivotal tracker site with username and password valid
