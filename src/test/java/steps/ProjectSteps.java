@@ -10,27 +10,33 @@ import pivotal.entities.Project;
 import pivotal.ui.dashboard.DashboardPage;
 
 public class ProjectSteps {
+
     Context context;
-    Project project = new Project();
+    Project project;
     private DashboardPage dashboardPage;
     private ProjectAPI projectAPI;
 
+    public ProjectSteps(Context context) {
+        this.context = context;
+        project = context.getProject();
+    }
+
+
     @Given("^I have a Project with name \"([^\"]*)\"$")
     public void haveProjectWithName(final String projectName) {
+        project.setNameProject(projectName);
         projectAPI = new ProjectAPI();
         try {
-            projectAPI.createProject(projectName);
+            projectAPI.createProject(project);
         } catch (NoCreatedRequierementException ncre) {
             throw new SkipException(ncre.getMessage());
         }
-        project.setNameProject(projectName);
-        //context.getProject().setNameProject(projectName);
     }
 
     @When("^I open the Project from Project Dashboard page$")
     public void openTheProjectFromProjectDashboardPage() {
         dashboardPage = new DashboardPage();
         dashboardPage.refresh();
-        dashboardPage.naviagteToProject(context.getProject().getNameProject());
+        dashboardPage.naviagteToProject(project.getNameProject());
     }
 }

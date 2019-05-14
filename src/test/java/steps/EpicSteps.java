@@ -4,6 +4,7 @@ import cucumber.Context;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
+import pivotal.entities.Epic;
 import pivotal.ui.epic.EpicFormPage;
 import pivotal.ui.epic.EpicsSection;
 import pivotal.ui.epic.HeaderPanelEpicComponent;
@@ -18,6 +19,12 @@ public class EpicSteps {
     private HeaderPanelEpicComponent epicsPanel;
     private EpicFormPage epicForm;
     private EpicsSection epicsSection;
+    private Epic epicEntity;
+
+    public EpicSteps(Context context) {
+        this.context = context;
+        epicEntity = context.getEpic();
+    }
 
     @And("^I open Epics section in Project page$")
     public void openEpicsSectionInProjectPage() {
@@ -30,12 +37,13 @@ public class EpicSteps {
         epicForm = epicsPanel.clickOnAddEpicBtn();
         epicForm.enterName(epic.get("name"));
         epicsSection = epicForm.clickOnSaveBtn();
-        context.getEpic().setName(epic.get("name"));
+
+        epicEntity.setName(epic.get("name"));
 
     }
 
     @Then("^I should see the epic in epics section in project page$")
     public void seeTheEpicInEpicsSectionInProjectPage() {
-        Assert.assertEquals(context.getEpic().getName(),epicsSection.getEpicName(context.getEpic().getName()));
+        Assert.assertEquals(epicEntity.getName(),epicsSection.getEpicName(epicEntity.getName()));
     }
 }
