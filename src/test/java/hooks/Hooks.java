@@ -12,6 +12,7 @@ public class Hooks {
     public Hooks(Context context) {
         this.context = context;
     }
+
     @After("@deleteProject")
     public void afterScenario(){
         projectAPI = new ProjectAPI();

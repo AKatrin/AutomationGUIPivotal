@@ -22,8 +22,7 @@ public class ProjectAPI {
     /**
      * Header value for the token.
      */
-    private static final String TRACKER_TOKEN_VALUE = LoaderPropertiesFile.getInstance()
-            .getProperties().get(X_TRACKER_TOKEN);
+    private static final String TRACKER_TOKEN_VALUE = LoaderPropertiesFile.getInstance().getProperties().get(X_TRACKER_TOKEN);
     /**
      * Header name for the content type.
      */
@@ -50,8 +49,8 @@ public class ProjectAPI {
         Map<String, String> newProject = new HashMap<>();
         newProject.put("name", project.getNameProject());
         Response response = given()
-                .headers(X_TRACKER_TOKEN, TRACKER_TOKEN_VALUE,
-                        CONTENT_TYPE, CONTENT_TYPE_VALUE)
+                .headers("X-TrackerToken", "e792c5ed8debd0705270e37d8db106e8",
+                        "Content-Type", "application/json")
                 .body(newProject)
                 .when().post(baseUrl);
 
@@ -70,8 +69,8 @@ public class ProjectAPI {
         String idProjectAsString = String.valueOf(idProject);
         String baseUrl = apiBaseURL.concat(ENDPOINT_PROJECTS).concat("/" + idProjectAsString);
         Response response = given()
-                .headers(X_TRACKER_TOKEN, TRACKER_TOKEN_VALUE,
-                        CONTENT_TYPE, CONTENT_TYPE_VALUE)
+                .headers("X-TrackerToken", "e792c5ed8debd0705270e37d8db106e8",
+                        "Content-Type", "application/json")
                 .when().delete(baseUrl);
     }
 }
