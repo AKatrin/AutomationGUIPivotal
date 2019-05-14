@@ -9,9 +9,10 @@ import java.util.Properties;
 
 public class LoaderPropertiesFile {
 
-
-    private  static final String URL_DRIVER_PROPERTIES = "driver.properties";
-    private Map<String,String> properties = new HashMap<>();
+    private static final String URL_DRIVER_PROPERTIES = "driver.properties";
+    private static final String URL_GRADLE_PROPERTIES = "gradle.properties";
+    private static final String URL_PIVOTAL_PROPERTIES = "pivotal.properties";
+    private Map<String, String> properties = new HashMap<>();
 
     protected LoaderPropertiesFile() {
         addPropertiesPivotal();
@@ -24,22 +25,21 @@ public class LoaderPropertiesFile {
     }
 
     public void addPropertiesPivotal() {
-        Properties propertiesPivotal = loadFile("pivotal.properties");
-        propertiesPivotal.forEach((key, value) -> properties.put( key.toString() , value.toString()));
-        
+        Properties propertiesPivotal = loadFile(URL_PIVOTAL_PROPERTIES);
+        propertiesPivotal.forEach((key, value) -> properties.put(key.toString(), value.toString()));
     }
 
     public void addPropertiesGradle() {
-        Properties propertiesGradle = loadFile("gradle.properties");
-        propertiesGradle.forEach((key, value) -> properties.put( key.toString() , value.toString()));
+        Properties propertiesGradle = loadFile(URL_GRADLE_PROPERTIES);
+        propertiesGradle.forEach((key, value) -> properties.put(key.toString(), value.toString()));
     }
 
     public void addPropertiesDriver() {
         Properties propertiesGradle = loadFile(URL_DRIVER_PROPERTIES);
-        propertiesGradle.forEach((key, value) -> properties.put( key.toString() , value.toString()));
+        propertiesGradle.forEach((key, value) -> properties.put(key.toString(), value.toString()));
     }
 
-    public static LoaderPropertiesFile getInstance(){
+    public static LoaderPropertiesFile getInstance() {
         return new LoaderPropertiesFile();
     }
 
